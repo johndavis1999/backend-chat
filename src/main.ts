@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Validator } from 'class-validator';
 import { ValidationPipe } from '@nestjs/common';
+import { IoAdapter } from '@nestjs/platform-socket.io';
 import * as cors from 'cors';
 
 async function bootstrap() {
@@ -16,10 +17,11 @@ async function bootstrap() {
   );
   app.use(cors({
     origin: '*',  // URL de tu frontend
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',  // Métodos permitidos
-    allowedHeaders: 'Content-Type, Accept, Authorization',  // Encabezados permitidos
+    methods: '*',  // Métodos permitidos
+    allowedHeaders: '*',  // Encabezados permitidos
     credentials: true,  // Si necesitas enviar cookies
   }));
+  app.useWebSocketAdapter(new IoAdapter(app));
   await app.listen(process.env.PORT ?? 3010);
 }
 bootstrap();

@@ -4,6 +4,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import * as dotenv from 'dotenv';
 import { ContactsModule } from './contacts/contacts.module';
+import { UserStatusGateway } from './user-status/user-status.gateway';
 dotenv.config();
 
 @Module({
@@ -23,6 +24,6 @@ dotenv.config();
     ContactsModule
   ],
   controllers: [],
-  providers: [],
+  providers: [UserStatusGateway],
 })
 export class AppModule {}

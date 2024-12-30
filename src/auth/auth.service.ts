@@ -29,6 +29,8 @@ export class AuthService {
             throw new UnauthorizedException('El usuario no existe');
         }
 
+        const userId = user.id;
+
         const isPasswordValid = await bcryptjs.compare(password, user.password);
         if(!isPasswordValid){
             throw new UnauthorizedException('El usuario no existe');
@@ -40,6 +42,7 @@ export class AuthService {
         const token = await this.jwtService.signAsync(payload);
 
         return {
+            userId,
             username,
             token
         };
