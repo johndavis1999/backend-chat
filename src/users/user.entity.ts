@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import { Contact } from "src/contacts/contact.entity";
 import { Exclude, Expose } from 'class-transformer';
+import { Chat } from "src/chats/chat.entity";
 
 @Entity('users')
 export class User {
@@ -22,4 +23,7 @@ export class User {
 
     @OneToMany(() => Contact, contact => contact.id_user)
     contacts: Contact[]
+
+    @OneToMany(() => Chat, chat => chat.createdBy)
+    chats: Chat[]
 }
