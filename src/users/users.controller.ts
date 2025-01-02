@@ -1,11 +1,13 @@
-import { Body, Controller, Get, Query, Post, Param, Delete, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Query, Post, Param, Delete, Patch, UseInterceptors } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { User } from './user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
 
 @Controller('users')
+@UseInterceptors(TransformInterceptor)
 export class UsersController {
 
     constructor(private userService: UsersService) {}

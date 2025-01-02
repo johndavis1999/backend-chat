@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { User } from 'src/users/user.entity';
+import { ChatMember } from 'src/chat-member/chat-member.entity';
 
 @Entity('chats')
 export class Chat {
@@ -21,4 +22,7 @@ export class Chat {
 
     @UpdateDateColumn()
     updatedAt: Date;
+    
+    @OneToMany(() => ChatMember, member => member.chat)
+    chatMembers: ChatMember[]
 }

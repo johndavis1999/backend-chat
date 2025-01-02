@@ -7,7 +7,6 @@ import { ContactsModule } from './contacts/contacts.module';
 import { UserStatusGateway } from './user-status/user-status.gateway';
 import { ChatGatewayGateway } from './chat-gateway/chat-gateway.gateway';
 import { ChatsModule } from './chats/chats.module';
-import { ChatMemberService } from './chat-member/chat-member.service';
 import { ChatMemberModule } from './chat-member/chat-member.module';
 dotenv.config();
 
@@ -30,6 +29,6 @@ dotenv.config();
     ChatMemberModule
   ],
   controllers: [],
-  providers: [UserStatusGateway, ChatGatewayGateway, ChatMemberService],
+  providers: [UserStatusGateway, ChatGatewayGateway],
 })
 export class AppModule {}

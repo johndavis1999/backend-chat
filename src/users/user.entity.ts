@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn, OneToOne, JoinCo
 import { Contact } from "src/contacts/contact.entity";
 import { Exclude, Expose } from 'class-transformer';
 import { Chat } from "src/chats/chat.entity";
+import { ChatMember } from 'src/chat-member/chat-member.entity';
 
 @Entity('users')
 export class User {
@@ -26,4 +27,7 @@ export class User {
 
     @OneToMany(() => Chat, chat => chat.createdBy)
     chats: Chat[]
+
+    @OneToMany(() => ChatMember, member => member.user)
+    chatMembers: ChatMember[]
 }
